@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Média</title>
+</head>
+<body>
+
+    <script>
+        let notas = [];
+        let continuar = true;
+
+
+        while (continuar) {
+            let entrada = prompt("Digite uma nota (ou clique em Cancelar para calcular a média):");
+            
+            if (entrada === null) {
+                continuar = false;
+            } else {
+                let nota = Number(entrada);
+                if (!isNaN(nota)) {
+                    notas.push(nota);
+                } else {
+                    alert("Por favor, digite um número válido.");
+                }
+            }
+        }
+
+        if (notas.length > 0) {
+            let somaDasNotas = 0;
+
+            for (let nota of notas) {
+                somaDasNotas += nota;
+            }
+
+            let media = somaDasNotas / notas.length;
+
+            console.log(`A média das notas é ${media.toFixed(2)}`);
+            document.body.innerHTML += `<h3>A média final é: ${media.toFixed(2)}</h3>`;
+        } else {
+            console.log("Nenhuma nota foi inserida.");
+        }
+    </script>
+</body>
+</html>
