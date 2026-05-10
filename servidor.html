@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Servidor</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        .item { margin-bottom: 10px; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <h2>Informações do Servidor (Promoção)</h2>
+    <div id="resultado"></div>
+
+    <script>
+        let servidor = {
+            nome: "Servidor Dell PowerEdge",
+            detalhes: {
+                ram: "32GB",
+                armazenamento: "1TB SSD"
+            },
+            valor: 15000
+        };
+
+        // Criando o objeto promocional
+        let servidorPromocao = {
+            ...servidor,
+            valor: 12000
+        };
+
+        // Função que lista no console e TAMBÉM escreve na página
+        function listarPropriedades(objeto) {
+            let container = document.getElementById("resultado");
+            
+            for (let chave in objeto) {
+                let valor = objeto[chave];
+                
+                // Se o valor for um objeto (como 'detalhes'), vamos converter para texto
+                if (typeof valor === 'object') {
+                    valor = JSON.stringify(valor);
+                }
+
+                // Exibe no Console
+                console.log(`${chave}: ${valor}`);
+                
+                // Escreve no HTML
+                container.innerHTML += `<p><strong>${chave}:</strong> ${valor}</p>`;
+            }
+        }
+
+        // Executa a função
+        listarPropriedades(servidorPromocao);
+
+        // Exibe o valor final destacado
+        document.body.innerHTML += `<hr><h3>O valor final com desconto é: R$ ${servidorPromocao.valor.toFixed(2)}</h3>`;
+    </script>
+</body>
+</html>
